@@ -16,11 +16,21 @@ npm run dev
 ```bash
 npm run typecheck # TypeScript 检查
 npm run build     # 生产构建，预渲染所有项目
-npm start         # 运行生产版本
+npm start         # 本地预览静态生产构建
 npm run check     # 类型检查 + 生产构建
 ```
 
-无需环境变量、数据库、CMS 或登录。运行时只依赖 Next.js、React、React DOM。字体、封面和内容均存储在本地；构建不需要外部内容 API。新增内容后，重新构建并部署即可。
+无需数据库、CMS 或登录。网站随构建导出为静态文件，Next.js 图片由构建时直接提供，不需要线上 Node.js 服务器。字体、封面和内容均存储在本地；新增内容后，重新构建并部署即可。
+
+## 发布到 Cloudflare Workers
+
+网站已配置 Next.js 静态导出与 Cloudflare Workers Static Assets：`npm run check` 会生成 `out/`，`wrangler.jsonc` 会将其作为静态站点上传。`npm start` 使用 Wrangler 本地预览这个静态构建，`npm run deploy` 则可在已认证的环境手动发布。
+
+连接 GitHub 自动发布时，在 Cloudflare 控制台打开 **Workers & Pages → Create application → Connect GitHub**，选择 `Handsomemikezzz/portfolio`；设置根目录 `/`、生产分支 `main`、构建命令 `npm run check`、部署命令 `npx wrangler deploy`。Wrangler 会读取仓库中的 `wrangler.jsonc` 与 `out/`。代码推送到 `main` 后，Cloudflare 自动构建和部署；账号授权需在 Cloudflare 控制台完成。
+
+首次部署后检查首页、`/projects`、`/projects/aodcast`、刷新详情页、站内图片、报告下载以及未知页面的 404。确认 `workers.dev` 地址可用后，再在同一个 Worker 配置中添加自己的域名。
+
+需要为内容编辑和静态导出保持一致：此站的详情路由都在构建时生成，发布新版必须重新构建。新增依赖时运行 `npm install` 并提交更新后的 `package-lock.json`；不要只推代码而漏掉锁文件。
 
 ## 页面与结构
 
