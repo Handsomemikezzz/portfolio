@@ -60,6 +60,38 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+      <section
+        className="home-about page-section"
+        aria-labelledby="writing-heading"
+      >
+        <div>
+          <span className="eyebrow mono">WRITING / PERSONAL NOTES</span>
+          <h2 id="writing-heading">{profile.blog.title}</h2>
+        </div>
+        <div>
+          <p lang="zh-CN">{profile.blog.description}</p>
+          <div className="project-external-links">
+            <a
+              className="text-link"
+              href={profile.blog.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Read the blog <span aria-hidden="true">↗</span>
+              <span className="sr-only"> (opens in a new tab)</span>
+            </a>
+            <a
+              className="text-link"
+              href={profile.blog.notesUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Short notes <span aria-hidden="true">↗</span>
+              <span className="sr-only"> (opens in a new tab)</span>
+            </a>
+          </div>
+        </div>
+      </section>
       <div className="about-statement">
         <span className="mono">THE GUIDING IDEA</span>
         <p>“I build things.”</p>
