@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { profile } from "@/content/profile";
 import { ProfileLinks } from "@/components/profile-links";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "About",
@@ -43,12 +44,13 @@ export default function AboutPage() {
           <p lang="zh-CN">{profile.about.description}</p>
           <p>{profile.introduction}</p>
           <div className="about-focus">
-            <h3 className="mono">CURRENT FOCUS</h3>
-            <ul>
-              {profile.capabilities.map((capability) => (
-                <li key={capability}>{capability}</li>
-              ))}
-            </ul>
+            <h3 className="mono">CAPABILITIES / WITH WORKING EVIDENCE</h3>
+            <p>
+              See how current project evidence supports my engineering practice.
+            </p>
+            <Link className="text-link" href="/#capabilities">
+              Browse the capability index <span aria-hidden="true">↗</span>
+            </Link>
           </div>
           <Link className="button button-dark" href="/projects">
             Explore the work <span aria-hidden="true">↗</span>

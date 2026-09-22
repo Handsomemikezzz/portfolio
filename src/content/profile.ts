@@ -26,11 +26,4 @@ export const profile = {
       detail: "Haonan’s Blog",
     },
   ],
-  capabilities: [
-    "Agent Systems",
-    "Agent Evaluation",
-    "Tool Use",
-    "AI Applications",
-    "Product Engineering",
-  ],
 };

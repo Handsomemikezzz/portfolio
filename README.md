@@ -57,6 +57,7 @@ src/
     schema.ts                  # 类型定义与分类列表
     projects.ts                # 所有项目：通常只需修改这个文件
     aodcast.ts                 # 第一个真实工程案例，可作为长案例范本
+    capabilities.ts            # 能力索引：链接到具体案例与证据
     build-log.ts               # 按日期维护输出日志
     profile.ts                 # 姓名、身份、简介、关注领域
 public/
@@ -154,6 +155,8 @@ public/
 日志使用 `YYYY-MM-DD` 日期，自动按月分组并倒序排列。添加真实条目时移除 `placeholder: true`，描述实际交付的内容，提供 `projectSlug` 让读者能查看证据。
 
 个人简介与关注领域在 `profile.ts`。若要修改 About 页的额外叙述，可编辑 `app/about/page.tsx`。字体和配色在 `globals.css` 顶部集中定义。
+
+首页与 About 使用 `capabilities.ts` 的同一份能力索引。每项能力链接到项目中的具体章节；证据不足时标为 `Next to document` 并写明下一份材料，不做自评打分，也不把原始技术标签当作能力证明。
 
 联系信息统一维护在 `profile.ts` 的 `links` 数组中，每项包含 `label`、`href`、`detail`。页脚展示简洁入口，About 页同时展示完整地址。邮箱使用 `mailto:`，其他外链使用 `https://`。新增简历或作品频道时添加真实链接即可，不需要修改组件；没有地址的条目先不添加。
 

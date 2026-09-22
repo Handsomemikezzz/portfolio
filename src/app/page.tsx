@@ -7,6 +7,7 @@ import { BuildLog } from "@/components/build-log";
 import { featuredProjects, projects } from "@/content/projects";
 import { profile } from "@/content/profile";
 import { buildLog } from "@/content/build-log";
+import { CapabilityIndex } from "@/components/capability-index";
 
 export default function HomePage() {
   return (
@@ -43,20 +44,9 @@ export default function HomePage() {
       <section className="capabilities" aria-labelledby="capabilities-heading">
         <div>
           <span className="mono eyebrow">CURRENT FOCUS</span>
-          <h2 id="capabilities-heading">
-            The work behind
-            <br />
-            the things.
-          </h2>
+          <h2 id="capabilities-heading">Capabilities, with evidence.</h2>
         </div>
-        <ul>
-          {profile.capabilities.map((capability, index) => (
-            <li key={capability}>
-              <span className="index">0{index + 1}</span>
-              {capability}
-            </li>
-          ))}
-        </ul>
+        <CapabilityIndex />
       </section>
       <section
         className="page-section archive-section"
