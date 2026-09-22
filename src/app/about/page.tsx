@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { profile } from "@/content/profile";
 import { ProfileLinks } from "@/components/profile-links";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "About",

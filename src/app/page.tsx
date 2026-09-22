@@ -41,7 +41,11 @@ export default function HomePage() {
           ))}
         </div>
       </section>
-      <section className="capabilities" aria-labelledby="capabilities-heading">
+      <section
+        id="capabilities"
+        className="capabilities"
+        aria-labelledby="capabilities-heading"
+      >
         <div>
           <span className="mono eyebrow">CURRENT FOCUS</span>
           <h2 id="capabilities-heading">Capabilities, with evidence.</h2>
