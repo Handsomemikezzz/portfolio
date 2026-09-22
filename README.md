@@ -46,6 +46,7 @@ src/
   content/
     schema.ts                  # 类型定义与分类列表
     projects.ts                # 所有项目：通常只需修改这个文件
+    aodcast.ts                 # 第一个真实工程案例，可作为长案例范本
     build-log.ts               # 按日期维护输出日志
     profile.ts                 # 姓名、身份、简介、关注领域
 public/
@@ -130,7 +131,13 @@ public/
 
 `category` 控制筛选（AI / Software / Video / Experiments / Tools），`format` 是自由文本，可填写 Podcast、Utility、Application 等任意形式；两者互相独立。如需增加筛选分类，只修改 `schema.ts` 顶部的 `categories` 即可，按钮和计数自动生成。
 
-`status` 支持 Placeholder / In progress / Shipped / Archived。当前 6 个项目与 3 条日志均为明确标注的占位内容，2026 和日志日期也属于种子数据。没有虚构成果、评分、用户数量或有效外部链接。替换真实内容、日期和预览后再更新状态；占位提示会自动消失。
+`status` 支持 Placeholder / In progress / Shipped / Archived。目前已收录真实的 Aodcast 源码级 alpha 案例及一条实际回归验证日志；其余 6 个项目与 3 条日志仍是明确标注的占位内容。占位项的年份和日期也属于种子数据，替换真实内容后再更新状态。首页首位展示 Aodcast，原 Agent System 占位保留在全部作品中。
+
+## 第一个真实案例：Aodcast
+
+案例正文在 `src/content/aodcast.ts`，首页和详情页自动读取。它保留历史截图、产品与架构说明、本人确认的职责、具体工程问题、固定源码版本，以及本次实际执行的 22 项定向回归测试。测试使用 mock LLM / TTS 替身，不能当作真实语音质量或端到端成功率。
+
+完整的整理方法、已使用的证据、下一步素材清单见 [项目沉淀指南](docs/project-playbook.md)。公开的原始测试记录在 `public/evidence/aodcast/`；大案例可以仿照 Aodcast 拆成独立数据文件，再从 `projects.ts` 导入。
 
 ## 日志与个人信息
 

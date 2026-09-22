@@ -1218,6 +1218,29 @@ figcaption {
   flex-wrap: wrap;
   gap: 16px 32px;
 }
+.evidence-references {
+  margin-top: 30px;
+}
+.evidence-references ul {
+  list-style: none;
+}
+.evidence-references a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 44px;
+  padding-block: 10px;
+  gap: 20px;
+  border-bottom: 1px solid var(--line);
+  font-size: 13px;
+}
+.evidence-references a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.evidence-references a span {
+  flex-shrink: 0;
+}
 .detail-section-body > .button {
   margin-top: 24px;
 }

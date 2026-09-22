@@ -4,6 +4,13 @@ import type { BuildLogEntry } from "./schema";
 export const buildLog: BuildLogEntry[] = [
   {
     date: "2026-09-21",
+    title: "Verified Aodcast’s rendering invariants",
+    detail:
+      "22 focused regression tests passed with mocked LLM/TTS providers. Command, source snapshot and raw output are recorded in the case study.",
+    projectSlug: "aodcast",
+  },
+  {
+    date: "2026-09-21",
     title: "Agent evaluation harness",
     detail: "TODO — Add an actual output and link to the evaluation report.",
     projectSlug: "agent-evaluation",

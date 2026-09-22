@@ -10,7 +10,13 @@ export type Category = Exclude<(typeof categories)[number], "All">;
 export type ProjectStatus =
   "Placeholder" | "In progress" | "Shipped" | "Archived";
 
-export type Cover = { src: string; alt: string; caption?: string };
+export type Cover = {
+  src: string;
+  alt: string;
+  caption?: string;
+  width?: number;
+  height?: number;
+};
 export type ProjectLinks = {
   github?: string;
   website?: string;
@@ -48,10 +54,17 @@ type ProjectBase = {
   status: ProjectStatus;
   cover: Cover;
   summary: string;
+  contentLanguage?: "en" | "zh-CN";
   evidence?: string;
-  demo?: { description: string; url?: string; image?: Cover };
+  demo?: {
+    description: string;
+    url?: string;
+    linkLabel?: string;
+    image?: Cover;
+  };
   learnings?: string[];
   links?: ProjectLinks;
+  references?: { label: string; url: string }[];
 };
 
 export type EngineeringProject = ProjectBase & {

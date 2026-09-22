@@ -94,8 +94,8 @@ export default async function ProjectPage({ params }: Props) {
         <Image
           src={project.cover.src}
           alt={project.cover.alt}
-          width={1200}
-          height={750}
+          width={project.cover.width ?? 1200}
+          height={project.cover.height ?? 750}
           loading="eager"
           sizes="(max-width: 1200px) 100vw, 1200px"
         />
@@ -115,7 +115,7 @@ export default async function ProjectPage({ params }: Props) {
             </a>
           ))}
         </nav>
-        <div className="case-study-content">
+        <div className="case-study-content" lang={project.contentLanguage}>
           <DetailSection {...sectionProps("Overview")}>
             <DetailText text={project.summary} />
             {project.evidence && (

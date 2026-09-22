@@ -1,0 +1,47 @@
+Aodcast — focused regression verification
+Recorded: 2026-09-21
+Source commit: cf23be5455c23c968d26f4e859d34fd57b08f7f5
+Source: https://github.com/Handsomemikezzz/Aodcast/tree/cf23be5455c23c968d26f4e859d34fd57b08f7f5
+Working tree before run: clean
+Environment: Python 3.13.2, Darwin, arm64
+Working directory: services/python-core (relative to the Aodcast repository)
+Command: PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m unittest tests.test_speech_plan tests.test_audio_assembly tests.test_long_task_state tests.test_podcast_rendering -v
+Exit code: 0
+
+Scope:
+Four selected test modules, not the full repository suite.
+LLM behavior uses the mock provider; TTS is replaced with a sine-wave fake.
+Tests use temporary data directories. No personal episodes or voice recordings are used.
+This verifies pipeline contracts, state transitions and audio assembly invariants.
+It does not measure speech naturalness, speaker similarity, actual model performance,
+end-to-end task success, latency or production cost. Test-run duration is not product latency.
+
+Raw unittest output:
+
+test_ambiguous_anchors_and_overlapping_pronunciations_are_not_applied (tests.test_speech_plan.SpeechPlanTests.test_ambiguous_anchors_and_overlapping_pronunciations_are_not_applied) ... ok
+test_context_window_rerenders_b_c_d_and_handles_edges (tests.test_speech_plan.SpeechPlanTests.test_context_window_rerenders_b_c_d_and_handles_edges) ... ok
+test_director_preserves_script_text_and_builds_versioned_plan (tests.test_speech_plan.SpeechPlanTests.test_director_preserves_script_text_and_builds_versioned_plan) ... ok
+test_paragraph_boundaries_are_not_discarded (tests.test_speech_plan.SpeechPlanTests.test_paragraph_boundaries_are_not_discarded) ... ok
+test_pathological_long_paragraph_is_split_into_renderable_segments (tests.test_speech_plan.SpeechPlanTests.test_pathological_long_paragraph_is_split_into_renderable_segments) ... ok
+test_assembler_inserts_planned_pause_and_normalizes_output (tests.test_audio_assembly.AudioAssemblyTests.test_assembler_inserts_planned_pause_and_normalizes_output) ... ok
+test_assembly_spec_round_trips_truthful_level_and_fade_fields (tests.test_audio_assembly.AudioAssemblyTests.test_assembly_spec_round_trips_truthful_level_and_fade_fields) ... ok
+test_planned_silence_does_not_change_audible_program_gain (tests.test_audio_assembly.AudioAssemblyTests.test_planned_silence_does_not_change_audible_program_gain) ... ok
+test_segment_edge_fade_is_applied_once_before_assembly (tests.test_audio_assembly.AudioAssemblyTests.test_segment_edge_fade_is_applied_once_before_assembly) ... ok
+test_committed_operation_wins_a_late_cancellation (tests.test_long_task_state.LongTaskStateManagerTests.test_committed_operation_wins_a_late_cancellation) ... ok
+test_heartbeat_respects_start_percent_floor (tests.test_long_task_state.LongTaskStateManagerTests.test_heartbeat_respects_start_percent_floor) ... ok
+test_manager_updates_running_progress (tests.test_long_task_state.LongTaskStateManagerTests.test_manager_updates_running_progress) ... ok
+test_stale_manager_cannot_overwrite_or_clear_new_run_state (tests.test_long_task_state.LongTaskStateManagerTests.test_stale_manager_cannot_overwrite_or_clear_new_run_state) ... ok
+test_cancel_after_synthesis_but_before_publish_discards_new_render (tests.test_podcast_rendering.PodcastRenderingTests.test_cancel_after_synthesis_but_before_publish_discards_new_render) ... ok
+test_full_render_persists_plan_manifest_and_take_lineage (tests.test_podcast_rendering.PodcastRenderingTests.test_full_render_persists_plan_manifest_and_take_lineage) ... ok
+test_local_segments_without_speaker_reference_use_previous_audio_as_context (tests.test_podcast_rendering.PodcastRenderingTests.test_local_segments_without_speaker_reference_use_previous_audio_as_context) ... ok
+test_qwen_keeps_speaker_reference_separate_from_previous_context (tests.test_podcast_rendering.PodcastRenderingTests.test_qwen_keeps_speaker_reference_separate_from_previous_context) ... ok
+test_regeneration_rejects_tampered_reused_segment_audio (tests.test_podcast_rendering.PodcastRenderingTests.test_regeneration_rejects_tampered_reused_segment_audio) ... ok
+test_regeneration_replaces_b_c_d_and_reuses_outer_segments (tests.test_podcast_rendering.PodcastRenderingTests.test_regeneration_replaces_b_c_d_and_reuses_outer_segments) ... ok
+test_script_edit_during_render_cannot_be_overwritten_by_stale_publication (tests.test_podcast_rendering.PodcastRenderingTests.test_script_edit_during_render_cannot_be_overwritten_by_stale_publication) ... ok
+test_script_edit_keeps_old_audio_visible_but_blocks_local_regeneration (tests.test_podcast_rendering.PodcastRenderingTests.test_script_edit_keeps_old_audio_visible_but_blocks_local_regeneration) ... ok
+test_voxcpm_keeps_original_speaker_reference_for_every_segment (tests.test_podcast_rendering.PodcastRenderingTests.test_voxcpm_keeps_original_speaker_reference_for_every_segment) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 0.463s
+
+OK

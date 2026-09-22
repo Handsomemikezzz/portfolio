@@ -1,8 +1,9 @@
 import type { Project } from "./schema";
+import { aodcast } from "./aodcast";
 
-// Seed entries describe slots in the archive, not completed work.
-// Replace TODO content and assets before changing status from Placeholder.
+// Real case studies can live in their own data file; the remaining seeds are placeholders.
 export const projects: Project[] = [
+  aodcast,
   {
     id: "001",
     slug: "agent-system",
@@ -13,7 +14,7 @@ export const projects: Project[] = [
     format: "Agent",
     kind: "engineering",
     tags: ["Agent systems", "Tool use"],
-    featured: true,
+    featured: false,
     status: "Placeholder",
     cover: {
       src: "/images/agent-system.svg",

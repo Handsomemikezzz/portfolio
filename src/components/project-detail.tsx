@@ -58,8 +58,8 @@ export function ArchitectureSection({
           <Image
             src={architecture.diagram.src}
             alt={architecture.diagram.alt}
-            width={1200}
-            height={750}
+            width={architecture.diagram.width ?? 1200}
+            height={architecture.diagram.height ?? 750}
             sizes="(max-width: 700px) 100vw, 70vw"
           />
           {architecture.diagram.caption && (
@@ -147,8 +147,8 @@ export function DemoSection({ project }: { project: Project }) {
           className="demo-image"
           src={project.demo.image.src}
           alt={project.demo.image.alt}
-          width={1200}
-          height={750}
+          width={project.demo.image.width ?? 1200}
+          height={project.demo.image.height ?? 750}
         />
       )}
       {project.demo?.url && (
@@ -158,7 +158,8 @@ export function DemoSection({ project }: { project: Project }) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Open demo ↗
+          {project.demo.linkLabel ?? "Open demo"}{" "}
+          <span aria-hidden="true">↗</span>
         </a>
       )}
     </>
@@ -174,21 +175,43 @@ export function ProjectLinks({ project }: { project: Project }) {
     website: "Visit website",
     video: "Watch video",
   };
-  return links.length ? (
-    <div className="project-external-links">
-      {links.map(([kind, href]) => (
-        <a
-          className="text-link"
-          key={kind}
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {labels[kind] ?? kind}
-          <span aria-hidden="true">↗</span>
-        </a>
-      ))}
-    </div>
+  const references = project.references ?? [];
+  return links.length || references.length ? (
+    <>
+      <div className="project-external-links">
+        {links.map(([kind, href]) => (
+          <a
+            className="text-link"
+            key={kind}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {labels[kind] ?? kind}
+            <span aria-hidden="true">↗</span>
+          </a>
+        ))}
+      </div>
+      {references.length > 0 && (
+        <div className="evidence-references">
+          <h3>Evidence & source notes</h3>
+          <ul>
+            {references.map((reference) => (
+              <li key={reference.url}>
+                <a
+                  href={reference.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {reference.label}
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </>
   ) : (
     <PlaceholderNote>
       TODO — Add a repository, live website, or video link. No links have been
