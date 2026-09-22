@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getProject, projects } from "@/content/projects";
+import { getProject, publishedProjects } from "@/content/projects";
 import {
   ArchitectureSection,
   DemoSection,
@@ -16,7 +16,7 @@ import { PlaceholderNote } from "@/components/primitives";
 type Props = { params: Promise<{ slug: string }> };
 export const dynamicParams = false;
 export function generateStaticParams() {
-  return projects.map(({ slug }) => ({ slug }));
+  return publishedProjects.map(({ slug }) => ({ slug }));
 }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = getProject((await params).slug);
@@ -52,7 +52,7 @@ export default async function ProjectPage({ params }: Props) {
     <>
       <header className="project-intro">
         <Link className="back-link mono" href="/projects">
-          <span aria-hidden="true">←</span> ALL WORK
+          <span aria-hidden="true">←</span> 回到作品集
         </Link>
         <div className="project-title-row">
           <span className="eyebrow mono">
@@ -72,7 +72,7 @@ export default async function ProjectPage({ params }: Props) {
           </div>
           <div>
             <dt>TYPE</dt>
-            <dd>{engineering ? "Engineering project" : "Creative project"}</dd>
+            <dd>{engineering ? "制作记录" : "创作记录"}</dd>
           </div>
           <div>
             <dt>FOCUS</dt>
@@ -105,7 +105,7 @@ export default async function ProjectPage({ params }: Props) {
       </figure>
       <div className="project-case-study">
         <nav className="case-study-nav" aria-label="On this page">
-          <span className="mono">IN THIS PROJECT</span>
+          <span className="mono">这份记录</span>
           {sections.map((title, index) => (
             <a href={`#${sectionId(title)}`} key={title}>
               <span className="index" aria-hidden="true">
@@ -120,7 +120,7 @@ export default async function ProjectPage({ params }: Props) {
             <DetailText text={project.summary} />
             {project.evidence && (
               <div className="detail-evidence">
-                <span className="eyebrow mono">KEY EVIDENCE</span>
+                <span className="eyebrow mono">相关记录</span>
                 <DetailText text={project.evidence} />
               </div>
             )}
@@ -206,9 +206,9 @@ export default async function ProjectPage({ params }: Props) {
         </div>
       </div>
       <div className="project-end">
-        <span className="mono">THERE’S MORE IN THE ARCHIVE.</span>
+        <span className="mono">还有下一次尝试。</span>
         <Link href="/projects">
-          Everything I Build <span aria-hidden="true">↗</span>
+          回作品集逛逛 <span aria-hidden="true">↗</span>
         </Link>
       </div>
     </>

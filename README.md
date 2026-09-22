@@ -1,6 +1,8 @@
-# HAONAN — Personal Builder Card
+# HAONAN — Notes & Things
 
-一个内容优先的个人作品档案：展示做过的东西、工程决策和可验证证据。
+一个慢慢生长的个人记录：项目、写作、旅行和语言学习。首页放尝试与想法，项目详情保留制作过程、技术笔记和可核对的资料。
+
+最新内容方向见 [个人记录方向](docs/personal-journal-direction.md)。此前的能力展示与求职规划仅作为历史备忘，不再决定首页组织。
 
 ## 本地运行
 
@@ -49,6 +51,8 @@ src/
     project-card.tsx           # ProjectCard、FeaturedProject、ProjectMeta
     project-grid.tsx           # ProjectGrid、CategoryFilter
     project-detail.tsx         # EvaluationPanel、ArchitectureSection 等
+    writing-list.tsx           # 精选文章列表
+    interest-notes.tsx         # 最近在想的事
     build-log.tsx              # BuildLog
     primitives.tsx             # SectionHeader、PlaceholderNote
     site-header.tsx
@@ -57,9 +61,11 @@ src/
     schema.ts                  # 类型定义与分类列表
     projects.ts                # 所有项目：通常只需修改这个文件
     aodcast.ts                 # 第一个真实工程案例，可作为长案例范本
-    capabilities.ts            # 能力索引：链接到具体案例与证据
-    build-log.ts               # 按日期维护输出日志
-    profile.ts                 # 姓名、身份、简介、关注领域
+    capabilities.ts            # 历史能力映射，仅供内容维护参考
+    journal.ts                 # 最近关注、About 简介和记录原则
+    writing.ts                 # 已发表文章的标题、日期、简介和链接
+    build-log.ts               # 按日期记录项目变化与写作
+    profile.ts                 # 姓名、主题、博客与联系入口
 public/
   images/                      # 项目封面、截图、架构图
   fonts/                       # 本地 Inter、IBM Plex Mono 与 OFL 授权
@@ -73,7 +79,7 @@ public/
 
 1. 将图片放入 `public/images/`，推荐约 1200 × 750，使用 WebP、AVIF、PNG 或 SVG。写入真实的 `alt` 描述。
 2. 在 `src/content/projects.ts` 的 `projects` 数组中添加一条数据。`id` 与 `slug` 必须唯一；`slug` 使用小写英文与连字符。
-3. 如需进入首页 Selected Work，设置 `featured: true`。首页显示数组顺序中的前 3 个 featured 项目。
+3. 有实际可展示的内容后，将 `status` 改为 `In progress`、`Shipped` 或 `Archived`。如需进入首页“做过的东西”，设置 `featured: true`；最多显示 3 项。`note` 可写当前状态或制作感想，工程数据仍放在详情页。
 4. 如需记录一次实际输出，在 `src/content/build-log.ts` 添加条目，并用 `projectSlug` 指向项目。
 5. 运行 `npm run check`。页面、分类计数和详情路由会自动更新，不需要新增页面文件。
 
@@ -81,7 +87,7 @@ public/
 
 ```ts
 {
-  id: "007",
+  id: "009",
   slug: "my-next-agent",
   title: "My Next Agent",
   subtitle: "TODO — 用一句话说明它做什么。",
@@ -142,7 +148,7 @@ public/
 
 `category` 控制筛选（AI / Software / Video / Experiments / Tools），`format` 是自由文本，可填写 Podcast、Utility、Application 等任意形式；两者互相独立。如需增加筛选分类，只修改 `schema.ts` 顶部的 `categories` 即可，按钮和计数自动生成。
 
-`status` 支持 Placeholder / In progress / Shipped / Archived。目前已收录真实的 Aodcast 源码级 alpha 案例及一条实际回归验证日志；其余 6 个项目与 3 条日志仍是明确标注的占位内容。占位项的年份和日期也属于种子数据，替换真实内容后再更新状态。首页首位展示 Aodcast，原 Agent System 占位保留在全部作品中。
+`status` 支持 Placeholder / In progress / Shipped / Archived。`publishedProjects` 会排除 Placeholder；页面列表和详情路由都使用这份公开集合。6 个种子条目保留在数据文件里作为编辑参考，不在网站显示或生成详情页。当前公开作品为 Aodcast，时间线使用真实项目变更与已发表文章。
 
 ## 第一个真实案例：Aodcast
 
@@ -152,15 +158,17 @@ public/
 
 ## 日志与个人信息
 
-日志使用 `YYYY-MM-DD` 日期，自动按月分组并倒序排列。添加真实条目时移除 `placeholder: true`，描述实际交付的内容，提供 `projectSlug` 让读者能查看证据。
+沿途记录使用 `YYYY-MM-DD` 日期，自动按月分组并倒序排列。可以记一次项目修改、一篇文章或真实经历；`projectSlug` 链到项目，`href` 可指向公开文章。没有日期依据的计划放到 `journal.ts` 的“最近在想”，不填入时间线。
 
-个人简介与关注领域在 `profile.ts`。若要修改 About 页的额外叙述，可编辑 `app/about/page.tsx`。字体和配色在 `globals.css` 顶部集中定义。
+姓名、主题和联系信息在 `profile.ts`；当前关注、About 简介和记录原则在 `journal.ts`。若要修改 About 页的额外叙述，可编辑 `app/about/page.tsx`。字体和配色在 `globals.css` 顶部集中定义。
 
-首页与 About 使用 `capabilities.ts` 的同一份能力索引。每项能力链接到项目中的具体章节；证据不足时标为 `Next to document` 并写明下一份材料，不做自评打分，也不把原始技术标签当作能力证明。
+精选文章由 `writing.ts` 本地维护，文章正文留在博客。现有条目的标题、日期和链接已与公开 RSS 核对，构建时不请求博客服务；对应的发表记录自动加入时间线。旅行与语言学习目前只展示记录意愿，具体条目等待真实素材。
 
 联系信息统一维护在 `profile.ts` 的 `links` 数组中，每项包含 `label`、`href`、`detail`。页脚展示简洁入口，About 页同时展示完整地址。邮箱使用 `mailto:`，其他外链使用 `https://`。新增简历或作品频道时添加真实链接即可，不需要修改组件；没有地址的条目先不添加。
 
 About 页的博客介绍和文章／说说入口维护在 `profile.ts` 的 `blog` 对象中，页脚 Blog 链接复用同一个地址。新项目方向与需要收集的证据见 [项目方向草案](docs/project-directions.md)；其中尚未实现的规划不作为完成成果展示。
+
+之前的 [内容规划](docs/content-plan.md) 和 [项目方向草案](docs/project-directions.md) 保留作为材料备忘。新的主页以个人记录为主，英语作为语言学习的一部分，不建立能力评级或求职优势模块。waytofree 仍按本人选择排除。
 
 ## 可访问性与检查
 

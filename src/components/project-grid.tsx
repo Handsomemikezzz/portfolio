@@ -21,25 +21,31 @@ export function CategoryFilter({
       role="group"
       aria-label="Filter projects by category"
     >
-      {categories.map((category) => {
-        const count =
-          category === "All"
-            ? projects.length
-            : projects.filter((p) => p.category === category).length;
-        return (
-          <button
-            key={category}
-            type="button"
-            aria-pressed={selected === category}
-            onClick={() => onChange(category)}
-          >
-            {category}
-            <span className="filter-count mono">
-              {String(count).padStart(2, "0")}
-            </span>
-          </button>
-        );
-      })}
+      {categories
+        .filter(
+          (category) =>
+            category === "All" ||
+            projects.some((project) => project.category === category),
+        )
+        .map((category) => {
+          const count =
+            category === "All"
+              ? projects.length
+              : projects.filter((p) => p.category === category).length;
+          return (
+            <button
+              key={category}
+              type="button"
+              aria-pressed={selected === category}
+              onClick={() => onChange(category)}
+            >
+              {category === "All" ? "全部" : category}
+              <span className="filter-count mono">
+                {String(count).padStart(2, "0")}
+              </span>
+            </button>
+          );
+        })}
     </div>
   );
 }
@@ -67,9 +73,7 @@ export function ProjectGrid({ projects }: { projects: Project[] }) {
         ))}
       </div>
       {visibleProjects.length === 0 && (
-        <p className="empty-state">
-          Nothing here yet. There’s room for the next idea.
-        </p>
+        <p className="empty-state">这里还没有记录，留给下一次尝试。</p>
       )}
     </div>
   );

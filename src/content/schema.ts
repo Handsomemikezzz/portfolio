@@ -56,6 +56,7 @@ type ProjectBase = {
   summary: string;
   contentLanguage?: "en" | "zh-CN";
   evidence?: string;
+  note?: string;
   demo?: {
     description: string;
     url?: string;
@@ -90,5 +91,6 @@ export type BuildLogEntry = {
   title: string;
   detail: string;
   projectSlug?: string;
+  href?: string;
   placeholder?: boolean;
 };

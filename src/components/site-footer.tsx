@@ -8,13 +8,13 @@ export function SiteFooter() {
         <Link href="/" className="footer-name">
           HAONAN<span className="brand-dot">.</span>
         </Link>
-        <p>A growing collection of things I build.</p>
+        <p>留下一些做过的东西，和沿途的想法。</p>
         <ProfileLinks />
       </div>
       <div className="footer-right">
-        <span className="mono">BUILT WITH INTENTION.</span>
+        <span className="mono">STILL EXPLORING.</span>
         <a href="#top">
-          Back to top <span aria-hidden="true">↑</span>
+          回到顶部 <span aria-hidden="true">↑</span>
         </a>
       </div>
     </footer>

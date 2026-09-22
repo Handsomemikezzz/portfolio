@@ -3,12 +3,12 @@ import { profile } from "@/content/profile";
 
 export function PersonalCard() {
   return (
-    <section className="personal-card" aria-labelledby="identity">
+    <section className="personal-card journal-hero" aria-labelledby="identity">
       <div className="hero-kicker mono">
         <span>
-          <span className="card-index">001 /</span> A PERSONAL BUILDER CARD
+          <span className="card-index">001 /</span> NOTES FROM HAONAN
         </span>
-        <span>INDEPENDENT BY CURIOSITY</span>
+        <span>一个慢慢生长的小站</span>
       </div>
       <div className="identity-grid">
         <div className="identity-name">
@@ -17,18 +17,15 @@ export function PersonalCard() {
             <span className="name-period">.</span>
           </h1>
           <span className="identity-caption mono">
-            LESS TALK. MORE THINGS BUILT.
+            MAKING ROOM
+            <br />
+            FOR CURIOSITY.
           </span>
         </div>
         <div className="identity-description">
-          <p className="roles">
-            {profile.roles.map((role) => (
-              <span key={role}>
-                <span className="role-index mono" aria-hidden="true">
-                  0{profile.roles.indexOf(role) + 1}
-                </span>
-                {role}
-              </span>
+          <p className="journal-topics">
+            {profile.topics.map((topic) => (
+              <span key={topic}>{topic}</span>
             ))}
           </p>
           <p className="hero-intro">{profile.introduction}</p>
@@ -37,14 +34,14 @@ export function PersonalCard() {
       <div className="hero-bottom">
         <div className="hero-actions">
           <a className="button button-dark" href="#selected-work">
-            Selected Work <span aria-hidden="true">↓</span>
+            看看做过的东西 <span aria-hidden="true">↓</span>
           </a>
-          <Link className="text-link" href="/projects">
-            Everything I Build <span aria-hidden="true">↗</span>
+          <Link className="text-link" href="/#writing">
+            读一读我的文字 <span aria-hidden="true">↓</span>
           </Link>
         </div>
         <span className="hero-footnote mono">
-          <span className="accent-dot" /> AN OPEN-ENDED PRACTICE
+          <span className="accent-dot" /> 未完待续
         </span>
       </div>
     </section>

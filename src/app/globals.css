@@ -553,7 +553,7 @@ ol {
   margin-top: 12px;
   max-width: 42ch;
 }
-.project-evidence {
+.project-note {
   margin-top: 25px;
   border-left: 1px solid var(--line);
   padding-left: 16px;
@@ -562,12 +562,7 @@ ol {
   color: var(--muted);
   max-width: 54ch;
 }
-.evidence-label {
-  display: block;
-  font-size: 9px;
-  color: var(--accent);
-  margin-bottom: 6px;
-}
+
 .project-link {
   font-size: 12px;
   display: flex;
@@ -602,96 +597,11 @@ ol {
   font-size: 15px;
   max-width: 28ch;
 }
-.lead-project .project-evidence {
+.lead-project .project-note {
   margin-top: 30px;
 }
 .lead-project .project-link {
   margin-top: 28px;
-}
-
-.capabilities {
-  padding-block: 35px;
-  border-block: 1px solid var(--line);
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 28px;
-}
-.capabilities .eyebrow {
-  font-size: 10px;
-}
-.capabilities h2 {
-  margin-top: 16px;
-  font-size: clamp(28px, 3.2vw, 40px);
-  letter-spacing: -0.04em;
-}
-.capability-index {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: clamp(24px, 4.5vw, 64px);
-  list-style: none;
-  border-top: 1px solid var(--line);
-}
-.capability-item {
-  min-width: 0;
-  padding: 22px 0 25px;
-  border-bottom: 1px solid var(--line);
-}
-.capability-topline {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 12px;
-  font-size: 9px;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.capability-item[data-status="next"] .capability-topline > span:last-child {
-  color: var(--accent);
-}
-.capability-topline .index {
-  font-size: 9px;
-}
-.capability-item h3 {
-  margin-top: 16px;
-  font-size: clamp(20px, 2vw, 25px);
-  letter-spacing: -0.035em;
-}
-.capability-description,
-.capability-next {
-  max-width: 48ch;
-  margin-top: 9px;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.8;
-}
-.capability-next {
-  border-left: 1px solid var(--accent);
-  padding-left: 12px;
-  font-size: 12px;
-}
-.capability-evidence {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px 20px;
-  margin-top: 12px;
-}
-.capability-evidence a {
-  display: inline-flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 7px;
-  min-height: 36px;
-  font-size: 11px;
-}
-.capability-evidence a > span:first-of-type {
-  color: var(--muted);
-}
-.capability-evidence a > span:last-child {
-  color: var(--accent);
-}
-.capability-evidence a:hover,
-.capability-evidence a:hover > span {
-  color: var(--accent);
 }
 .category-filter {
   display: flex;
@@ -1379,33 +1289,6 @@ figcaption {
   max-width: 40ch;
   color: var(--muted);
 }
-.about-focus {
-  border-top: 1px solid var(--line);
-  margin-block: 36px;
-  padding-top: 26px;
-}
-.about-focus h3 {
-  font-size: 10px;
-  color: var(--muted);
-  margin-bottom: 18px;
-}
-.about-focus ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 24px;
-  list-style: none;
-  font-size: 14px;
-}
-.about-focus > p {
-  margin-top: 10px;
-  max-width: 45ch;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.8;
-}
-.about-focus > .text-link {
-  margin-top: 8px;
-}
 .about-statement {
   padding: 65px 0 80px;
   border-top: 1px solid var(--line);
@@ -1474,7 +1357,7 @@ figcaption {
   .lead-project .project-subtitle {
     font-size: 14px;
   }
-  .lead-project .project-evidence {
+  .lead-project .project-note {
     margin-top: 20px;
   }
   .lead-project .project-link {
@@ -1548,7 +1431,7 @@ figcaption {
     grid-column: 1;
     grid-row: 3;
   }
-  .lead-project .project-evidence {
+  .lead-project .project-note {
     grid-column: 2;
     grid-row: 2/4;
     margin-top: 22px;
@@ -1561,10 +1444,6 @@ figcaption {
   }
   .project-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .capabilities {
-    grid-template-columns: 1fr;
-    gap: 24px;
   }
   .section-aside {
     max-width: 170px;
@@ -1758,8 +1637,8 @@ figcaption {
   .project-meta {
     font-size: 9px;
   }
-  .project-evidence,
-  .lead-project .project-evidence {
+  .project-note,
+  .lead-project .project-note {
     margin-top: 22px;
     font-size: 12px;
   }
@@ -1769,27 +1648,6 @@ figcaption {
     bottom: 12px;
     right: 12px;
     font-size: 19px;
-  }
-  .capabilities {
-    grid-template-columns: 1fr;
-    gap: 24px;
-    padding-block: 28px;
-  }
-  .capabilities h2 {
-    font-size: 25px;
-  }
-  .capability-index {
-    grid-template-columns: 1fr;
-  }
-  .capability-item {
-    padding-block: 18px 20px;
-  }
-  .capability-item h3 {
-    font-size: 22px;
-    margin-top: 11px;
-  }
-  .capability-description {
-    font-size: 14px;
   }
   .category-filter {
     gap: 8px 24px;
@@ -2106,6 +1964,190 @@ figcaption {
     transform: none;
   }
   .profile-links > a:hover .profile-link-label > span {
+    transform: none;
+  }
+}
+
+/* Projects, writing and open questions share a personal notebook rhythm. */
+.journal-hero .identity-description {
+  grid-template-columns: 1fr 1.15fr;
+  align-items: center;
+}
+.journal-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 22px;
+  font-size: 14px;
+  color: var(--muted);
+}
+.journal-topics span + span::before {
+  content: "/";
+  padding-right: 22px;
+  color: var(--line);
+}
+.journal-hero .hero-intro {
+  max-width: 26ch;
+  font-size: 19px;
+  line-height: 1.9;
+}
+.journal-hero .hero-footnote {
+  letter-spacing: 0.1em;
+}
+.journal-section {
+  border-top: 1px solid var(--line);
+  position: relative;
+}
+.anchor-alias {
+  position: absolute;
+  top: 0;
+}
+.journal-section-title {
+  font-size: clamp(29px, 3.2vw, 44px);
+  letter-spacing: -0.035em;
+}
+.writing-list {
+  list-style: none;
+}
+.writing-list li {
+  display: grid;
+  grid-template-columns: 130px minmax(0, 1fr);
+  gap: 25px;
+  border-top: 1px solid var(--line);
+  padding: 26px 0;
+}
+.writing-list time {
+  color: var(--muted);
+  padding-top: 6px;
+  font-size: 10px;
+}
+.writing-list a {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 28px;
+  min-height: 44px;
+}
+.writing-list h3 {
+  font-size: 23px;
+  letter-spacing: -0.025em;
+  line-height: 1.45;
+}
+.writing-list p {
+  margin-top: 10px;
+  color: var(--muted);
+  max-width: 58ch;
+  font-size: 14px;
+  line-height: 1.85;
+}
+.writing-arrow {
+  font-size: 22px;
+  transition: transform 180ms ease;
+}
+.writing-list a:hover {
+  color: var(--accent);
+}
+.writing-list a:hover .writing-arrow {
+  transform: translate(2px, -2px);
+}
+.interest-notes {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 56px;
+}
+.interest-notes li {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 14px;
+  padding: 26px 0;
+  border-top: 1px solid var(--line);
+}
+.interest-notes .index {
+  padding-top: 5px;
+  font-size: 10px;
+}
+.interest-notes h3 {
+  font-size: 23px;
+  line-height: 1.45;
+  letter-spacing: -0.02em;
+}
+.interest-notes p {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.95;
+}
+.about-id .journal-topics {
+  font-size: 13px;
+  gap: 8px 12px;
+}
+.about-id .journal-topics span + span::before {
+  padding-right: 12px;
+}
+.journal-principles {
+  border-top: 1px solid var(--line);
+  padding-top: 25px;
+  margin-top: 30px;
+}
+.journal-principles h3 {
+  font-size: 18px;
+  margin-bottom: 18px;
+}
+.journal-principles ul {
+  list-style: none;
+}
+.journal-principles li {
+  padding: 8px 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.85;
+}
+.journal-notes-link {
+  margin-top: 16px;
+}
+@media (max-width: 600px) {
+  .journal-hero .identity-description {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .journal-hero .hero-intro {
+    font-size: 15px;
+    max-width: none;
+  }
+  .journal-topics {
+    gap: 8px 14px;
+    font-size: 12px;
+  }
+  .journal-topics span + span::before {
+    padding-right: 14px;
+  }
+  .writing-list li {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 23px 0;
+  }
+  .writing-list h3 {
+    font-size: 23px;
+  }
+  .writing-list p {
+    font-size: 14px;
+  }
+  .interest-notes {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .interest-notes h3 {
+    font-size: 22px;
+  }
+  .interest-notes p {
+    font-size: 14px;
+  }
+  .journal-section .section-header {
+    flex-wrap: wrap;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .writing-list a:hover .writing-arrow {
     transform: none;
   }
 }

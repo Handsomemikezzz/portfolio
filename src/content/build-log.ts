@@ -1,33 +1,26 @@
 import type { BuildLogEntry } from "./schema";
+import { writing } from "./writing";
 
-// Replace these examples with dated, verifiable outputs. No sample metrics.
+// Dated project changes and published writing share one small timeline.
 export const buildLog: BuildLogEntry[] = [
   {
     date: "2026-09-21",
-    title: "Verified Aodcast’s rendering invariants",
+    title: "给 Aodcast 留下一份制作记录",
     detail:
-      "22 focused regression tests passed with mocked LLM/TTS providers. Command, source snapshot and raw output are recorded in the case study.",
+      "把流程、设计和一次代码验证整理在一起，也记下目前还缺少的演示材料。",
     projectSlug: "aodcast",
   },
   {
-    date: "2026-09-21",
-    title: "Agent evaluation harness",
-    detail: "TODO — Add an actual output and link to the evaluation report.",
-    projectSlug: "agent-evaluation",
-    placeholder: true,
+    date: "2026-08-22",
+    title: "让 Aodcast 围绕脚本展开",
+    detail:
+      "把脚本、声音选择和音频操作放进同一个工作区。对应源码记录：a49d2fe。",
+    projectSlug: "aodcast",
   },
-  {
-    date: "2026-09-21",
-    title: "Personal Inbox MVP",
-    detail: "TODO — Document a shipped workflow and its demo.",
-    projectSlug: "personal-information-inbox",
-    placeholder: true,
-  },
-  {
-    date: "2026-09-21",
-    title: "An AI short film",
-    detail: "TODO — Add the completed film and production notes.",
-    projectSlug: "ai-short-film",
-    placeholder: true,
-  },
+  ...writing.map((post) => ({
+    date: post.date,
+    title: `写下《${post.title}》`,
+    detail: post.description,
+    href: post.url,
+  })),
 ];

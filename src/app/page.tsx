@@ -2,12 +2,12 @@ import Link from "next/link";
 import { PersonalCard } from "@/components/personal-card";
 import { SectionHeader } from "@/components/primitives";
 import { FeaturedProject } from "@/components/project-card";
-import { ProjectGrid } from "@/components/project-grid";
+import { WritingList } from "@/components/writing-list";
+import { InterestNotes } from "@/components/interest-notes";
 import { BuildLog } from "@/components/build-log";
-import { featuredProjects, projects } from "@/content/projects";
+import { featuredProjects } from "@/content/projects";
 import { profile } from "@/content/profile";
-import { buildLog } from "@/content/build-log";
-import { CapabilityIndex } from "@/components/capability-index";
+import { journalAbout } from "@/content/journal";
 
 export default function HomePage() {
   return (
@@ -18,19 +18,12 @@ export default function HomePage() {
         id="selected-work"
         aria-labelledby="selected-heading"
       >
-        <SectionHeader number="01" title="Selected Work" id="selected-heading">
-          <span className="section-aside mono">
-            SYSTEMS, DECISIONS & EVIDENCE
-          </span>
+        <SectionHeader number="01" title="做过的东西" id="selected-heading">
+          <Link className="text-link" href="/projects">
+            逛逛作品集 <span aria-hidden="true">↗</span>
+          </Link>
         </SectionHeader>
-        {featuredProjects.some(
-          (project) => project.status === "Placeholder",
-        ) && (
-          <p className="seed-notice">
-            <span className="accent-dot" /> An archive in the making. Entries
-            marked “Placeholder” are waiting for real work.
-          </p>
-        )}
+        <p className="section-description">从一个小念头开始，边做边改。</p>
         <div className="featured-grid">
           {featuredProjects.slice(0, 3).map((project, index) => (
             <FeaturedProject
@@ -42,47 +35,50 @@ export default function HomePage() {
         </div>
       </section>
       <section
-        id="capabilities"
-        className="capabilities"
-        aria-labelledby="capabilities-heading"
+        className="page-section journal-section"
+        id="writing"
+        aria-labelledby="writing-heading"
       >
-        <div>
-          <span className="mono eyebrow">CURRENT FOCUS</span>
-          <h2 id="capabilities-heading">Capabilities, with evidence.</h2>
-        </div>
-        <CapabilityIndex />
-      </section>
-      <section
-        className="page-section archive-section"
-        id="everything"
-        aria-labelledby="everything-heading"
-      >
-        <SectionHeader
-          number="02"
-          title="Everything I Build"
-          id="everything-heading"
-        >
-          <Link className="text-link" href="/projects">
-            Full archive <span aria-hidden="true">↗</span>
-          </Link>
+        <SectionHeader number="02" title="写下的片段" id="writing-heading">
+          <a
+            href={profile.blog.url}
+            className="text-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            去博客看看 <span aria-hidden="true">↗</span>
+            <span className="sr-only">（在新标签页打开）</span>
+          </a>
         </SectionHeader>
         <p className="section-description">
-          Useful things. Curious things. Things that needed to exist.
+          有时是做东西的体会，有时只是当下的想法。
         </p>
-        <ProjectGrid projects={projects} />
+        <WritingList />
       </section>
       <section
-        className="page-section"
+        className="page-section journal-section"
+        id="now"
+        aria-labelledby="now-heading"
+      >
+        <span id="capabilities" className="anchor-alias" aria-hidden="true" />
+        <SectionHeader number="03" title="最近在想" id="now-heading">
+          <span className="section-aside mono">OPEN QUESTIONS</span>
+        </SectionHeader>
+        <p className="section-description">
+          还没有答案，也还没有完成。先给好奇心留个位置。
+        </p>
+        <InterestNotes />
+      </section>
+      <section
+        className="page-section journal-section"
         id="build-log"
         aria-labelledby="log-heading"
       >
-        <SectionHeader number="03" title="Build Log" id="log-heading">
-          <span className="section-aside mono">A RECORD OF OUTPUT</span>
+        <SectionHeader number="04" title="一些脚印" id="log-heading">
+          <span className="section-aside mono">ALONG THE WAY</span>
         </SectionHeader>
         <p className="section-description">
-          Small entries for things made.
-          {buildLog.some((entry) => entry.placeholder) &&
-            " Sample entries are marked as placeholders."}
+          做过的改动，写过的文字，回头还能找到。
         </p>
         <BuildLog />
       </section>
@@ -91,20 +87,17 @@ export default function HomePage() {
         aria-labelledby="about-heading"
       >
         <div>
-          <span className="eyebrow mono">04 / THE PERSON BEHIND THE WORK</span>
+          <span className="eyebrow mono">05 / A LITTLE ABOUT ME</span>
           <h2 id="about-heading">
-            Always a builder.
+            慢慢探索，
             <br />
-            <span className="muted">Always curious.</span>
+            <span className="muted">也慢慢记录。</span>
           </h2>
         </div>
         <div>
-          <p lang="zh-CN">
-            {profile.about.intro}
-            {profile.about.description}
-          </p>
+          <p>{journalAbout.intro}</p>
           <Link className="text-link" href="/about">
-            A little more about me <span aria-hidden="true">↗</span>
+            关于我和这个小站 <span aria-hidden="true">↗</span>
           </Link>
         </div>
       </section>

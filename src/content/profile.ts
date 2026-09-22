@@ -9,8 +9,9 @@ const blog = {
 export const profile = {
   name: "HAONAN",
   roles: ["AI Engineer", "Agent Builder", "Maker"],
+  topics: ["项目", "写作", "旅行", "语言学习"],
   introduction:
-    "I build AI agents, software, experiments, and things I find interesting.",
+    "做点东西，写点想法。把尝试、变化和还没想明白的事，慢慢留在这里。",
   about: {
     intro: "我是一个喜欢构建东西的软件工程师。",
     description:

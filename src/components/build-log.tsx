@@ -27,8 +27,24 @@ export function BuildLog() {
             {entries.map((entry, index) => (
               <li key={`${entry.date}-${index}`}>
                 <div className="log-entry-heading">
-                  {entry.projectSlug ? (
-                    <Link href={`/projects/${entry.projectSlug}`}>
+                  {entry.projectSlug || entry.href ? (
+                    <Link
+                      href={
+                        entry.projectSlug
+                          ? `/projects/${entry.projectSlug}`
+                          : entry.href!
+                      }
+                      target={
+                        !entry.projectSlug && entry.href?.startsWith("https://")
+                          ? "_blank"
+                          : undefined
+                      }
+                      rel={
+                        !entry.projectSlug && entry.href?.startsWith("https://")
+                          ? "noopener noreferrer"
+                          : undefined
+                      }
+                    >
                       {entry.title}
                       <span aria-hidden="true">↗</span>
                     </Link>
@@ -46,7 +62,7 @@ export function BuildLog() {
         </div>
       ))}
       {!buildLog.length && (
-        <p className="empty-state">The next thing I build starts the log.</p>
+        <p className="empty-state">下一段故事，从这里开始。</p>
       )}
     </div>
   );

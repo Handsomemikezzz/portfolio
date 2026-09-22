@@ -31,7 +31,8 @@ export function ProjectCard({
       <div className="project-plate">
         <div className="plate-caption mono" aria-hidden="true">
           <span className="plate-number">
-            {project.id} <span>/ {featured ? "SELECTED WORK" : "ARCHIVE"}</span>
+            {project.id}{" "}
+            <span>/ {featured ? "ON MY DESK" : "THINGS I MADE"}</span>
           </span>
           <span>{project.status}</span>
         </div>
@@ -65,15 +66,11 @@ export function ProjectCard({
           <Link href={`/projects/${project.slug}`}>{project.title}</Link>
         </h3>
         <p className="project-subtitle">{project.subtitle}</p>
-        {featured && (
-          <p className="project-evidence">
-            <span className="evidence-label mono">EVIDENCE</span>
-            {project.evidence ??
-              "TODO — Add a verifiable result, artifact, or demonstration."}
-          </p>
+        {featured && project.note && (
+          <p className="project-note">{project.note}</p>
         )}
         <Link href={`/projects/${project.slug}`} className="project-link">
-          View project <span aria-hidden="true">↗</span>
+          看看制作过程 <span aria-hidden="true">↗</span>
           <span className="sr-only">: {project.title}</span>
         </Link>
       </div>

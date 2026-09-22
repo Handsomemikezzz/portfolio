@@ -164,7 +164,13 @@ export const projects: Project[] = [
   },
 ];
 
-export const featuredProjects = projects.filter((project) => project.featured);
+// Keep seed templates as editing references, outside the public archive and routes.
+export const publishedProjects = projects.filter(
+  (project) => project.status !== "Placeholder",
+);
+export const featuredProjects = publishedProjects.filter(
+  (project) => project.featured,
+);
 export function getProject(slug: string) {
-  return projects.find((project) => project.slug === slug);
+  return publishedProjects.find((project) => project.slug === slug);
 }

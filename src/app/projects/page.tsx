@@ -1,44 +1,31 @@
 import type { Metadata } from "next";
 import { ProjectGrid } from "@/components/project-grid";
-import { projects } from "@/content/projects";
+import { publishedProjects } from "@/content/projects";
 
 export const metadata: Metadata = {
-  title: "Everything I Build",
-  description:
-    "An open-ended archive of AI agents, software, tools, videos, and experiments by HAONAN.",
+  title: "做过的东西",
+  description: "HAONAN 做过的工具、软件和小实验，以及它们的制作过程。",
 };
 
 export default function ProjectsPage() {
-  const placeholderCount = projects.filter(
-    (project) => project.status === "Placeholder",
-  ).length;
   return (
     <>
       <header className="page-intro">
         <span className="eyebrow mono">
-          THE COMPLETE ARCHIVE / {String(projects.length).padStart(2, "0")}{" "}
-          ENTRIES
+          THINGS I MADE / {String(publishedProjects.length).padStart(2, "0")}
         </span>
         <h1>
-          Everything
-          <br />I Build<span className="brand-dot">.</span>
+          做过的东西<span className="brand-dot">。</span>
         </h1>
         <p>
-          A home for the useful, the curious, and the experimental.
+          有些已经能用，有些还在打磨。
           <br />
-          Different formats. The same instinct to make things.
+          把尝试和制作过程，一起留在这里。
         </p>
       </header>
-      <section className="archive-page" aria-label="Project archive">
-        <h2 className="sr-only">Project collection</h2>
-        {placeholderCount > 0 && (
-          <p className="seed-notice">
-            <span className="accent-dot" /> {placeholderCount}{" "}
-            {placeholderCount === 1 ? "entry is" : "entries are"} marked as
-            placeholders, waiting for real work.
-          </p>
-        )}
-        <ProjectGrid projects={projects} />
+      <section className="archive-page" aria-label="作品集">
+        <h2 className="sr-only">作品列表</h2>
+        <ProjectGrid projects={publishedProjects} />
       </section>
     </>
   );

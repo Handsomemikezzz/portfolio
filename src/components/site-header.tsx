@@ -10,12 +10,12 @@ export function SiteHeader() {
       <Link href="/" className="wordmark" aria-label="HAONAN home">
         H<span className="brand-dot">.</span>
       </Link>
-      <span className="header-label mono">PERSONAL ARCHIVE</span>
+      <span className="header-label mono">NOTES & THINGS</span>
       <nav aria-label="Main navigation">
         {[
-          { href: "/", label: "Home" },
-          { href: "/projects", label: "Work" },
-          { href: "/about", label: "About" },
+          { href: "/", label: "首页" },
+          { href: "/projects", label: "作品" },
+          { href: "/about", label: "关于" },
         ].map(({ href, label }) => {
           const active =
             href === "/" ? pathname === href : pathname.startsWith(href);
